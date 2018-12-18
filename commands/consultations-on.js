@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const bot = require('./bot.json');
+const core = require("../core.js");
 
 if(message.author.bot) return;
 if(message.content.indexOf(bot.prefix) !== 0) return;
@@ -8,21 +9,9 @@ const args = message.content.slice(bot.prefix.length).trim().split(/ +/g);
 const command = args.shift().toLowerCase();
 
 if(cmd ===  `consultation-on`) {
-    let perms = message.member.permissions;
-    let has_admin = perms.has("ADMINISTRATOR");
-    let role = message.member.roles;
-    let has_designer = role.has('name', 'Design Team');
-    if(has_admin == true || has_designer == true){
-        let role = message.guild.roles.find(r => r.name === "Open for Consultations");
-        let servericon = message.guild.iconURL;
-        let member = message.author;
-        member.addRole(role).catch(console.error);
-        let roleemebed = new Discord.RichEmbed()
-        .setDescription("You've been added to the role Open for Consultations")
-        .setColor("#FF000")
-        .setThumbnail(servericon)
-        .addField("", "You've opened yourself to Consultations!");
-
-        return message.channel.send(roleemebed);
-    }
+if(!message.member.roles.some(r=>["Administrator", "Moderator", "Director", "Assistant Director", "Staff"].includes(r.name)) || message.author.hasPermission("ADMINISTRATOR") ) 
+return message.reply("You cannot do that.");
+let ConsultationRole = message.guild.roles.find(role => role.name === "Open For Consulatations");
+message.author.giveRole(consultationRole);
+return message.reply("You are now Open for Consultations");
 }
