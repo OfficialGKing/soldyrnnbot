@@ -1,0 +1,3 @@
+node core.js
+
+pause
