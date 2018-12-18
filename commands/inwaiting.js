@@ -1,3 +1,7 @@
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const bot = require('./bot.json');
+
 if(cmd === `${prefix}inwaiting`){
     let sicon = message.guild.iconURL;
     let membersWithRole = message.guild.members.filter(member => { 

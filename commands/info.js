@@ -1,3 +1,7 @@
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const bot = require('./bot.json');
+
 if(cmd === `${prefix}info`){
     let sicon = message.guild.iconURL;
     let UserswithRole = message.member.roles('name', 'Bot');

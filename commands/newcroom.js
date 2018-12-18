@@ -1,3 +1,7 @@
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const bot = require('./bot.json');
+
 if(cmd === `${prefix}new`) {
     message.reply("Creating Private Consultation Channel...");
 message.guild.createChannel(`consultation-${message.author.id}`, "voice").then(c => {

@@ -1,3 +1,7 @@
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const bot = require('./bot.json');
+
 if(message.author.bot) return;
 if(message.channel.type === "dm") return;
 
