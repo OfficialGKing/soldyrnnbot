@@ -2,7 +2,12 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const bot = require('./bot.json');
 
-if(cmd === `${prefix}info`){
+if(message.author.bot) return;
+if(message.content.indexOf(bot.prefix) !== 0) return;
+const args = message.content.slice(bot.prefix.length).trim().split(/ +/g);
+const command = args.shift().toLowerCase();
+
+if(cmd === `info`){
     let sicon = message.guild.iconURL;
     let UserswithRole = message.member.roles('name', 'Bot');
     let serverembed = new Discord.RichEmbed()
